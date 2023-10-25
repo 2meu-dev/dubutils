@@ -18,7 +18,6 @@ const { help } = require("./help.js");
 switch (command) {
   case "buildenv":
     const { buildenv } = require("./buildenv.js");
-    console.log({ buildenv });
     buildenv(options);
     break;
   case "copystring":
