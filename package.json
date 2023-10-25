@@ -1,0 +1,17 @@
+{
+  "name": "buildenv",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "dubutils": "./dubutils.js"
+  },
+  "scripts": {
+    "start": "node dubutils.js"
+  },
+  "author": "Stan",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.19.5",
+    "findup-sync": "^5.0.0"
+  }
+}
