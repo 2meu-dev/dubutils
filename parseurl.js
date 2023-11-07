@@ -88,7 +88,7 @@ exports.parseurl = function (inputOptions) {
       .map((file) => path.relative(dstDir, file))
       .map((file) => file.replace(/\.(ts|tsx|js|jsx)$/, ""))
       .map((file) =>
-        file.endsWith("index") ? file.replace(/\/index$/, "") : file
+        file.endsWith("index") ? file.replace("index", "") : file
       );
     const localesIncluded = [];
     if (!value.locales.includes("")) {
