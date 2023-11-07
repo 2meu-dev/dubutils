@@ -43,4 +43,7 @@ exports.OptionBuilder = class OptionBuilder {
   copystring() {
     return this.options.copystring;
   }
+  parseurl() {
+    return this.options.parseurl;
+  }
 };

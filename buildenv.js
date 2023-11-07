@@ -1,7 +1,6 @@
 exports.buildenv = function (inputOptions) {
   const fs = require("fs");
   const path = require("path");
-  const findup = require("findup-sync");
 
   /// /////////////////////////////////////////////////////////////////////
   // 설명 - 하단의 Settings 부분을 수정한다. 이 스크립트는 npm run buildenv시에만 실행된다.

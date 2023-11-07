@@ -3,3 +3,5 @@ scripts
 .env*
 _ENV
 public
+dubutils.config.json
+fetchUrls.json

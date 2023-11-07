@@ -28,5 +28,41 @@
   "copystring": {
     "searchThrough": ["path_to_string", "pathtostring", ".env.local", ".env"],
     "searchFor": "PATH_TO_STRING"
+  },
+  "parseurl": {
+    "platform": {
+      "2dub": {
+        "parse": false,
+        "path": "",
+        "url" : "https://www.2dub.me",
+        "includes":[],
+        "excludes":[],
+        "locales" : ["en", "ko", "ja"]
+      },
+      "solution": {
+        "parse": false,
+        "path": "",
+        "url" : "https://solution.2dub.me",
+        "includes":[],
+        "excludes":[],
+        "locales" : ["en", "ko", "ja"]
+      },
+      "class": {
+        "parse": false,
+        "path": "",
+        "url" : "https://class.2dub.me",
+        "includes":[],
+        "excludes":[],
+        "locales" : ["en", "ko", "ja"]
+      },
+      "learning": {
+        "parse": false,
+        "path": "",
+        "url" : "https://learning.2dub.me",
+        "includes":[],
+        "excludes":[],
+        "locales" : ["en", "ko", "ja"]
+      }
+    }
   }
 }
