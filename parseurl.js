@@ -63,6 +63,7 @@ exports.parseurl = function (inputOptions) {
 
     const dstDir = path.join(value.path, "pages");
     const urls = getAllFilesInDir(dstDir)
+      .concat(value.includes)
       .filter((file) =>
         value.excludes.reduce(
           (acc, exclude) => acc && !file.includes(exclude),
@@ -95,12 +96,17 @@ exports.parseurl = function (inputOptions) {
       value.locales.push("");
     }
     urls.forEach((url) => {
-      value.locales.forEach((locale) => {
-        localesIncluded.push(new URL(`${locale}/${url}`, value.url).href);
-      });
+      if (url.startsWith("api") || url.startsWith("/api")) {
+        // api는 로케일 제외
+        localesIncluded.push(new URL(url, value.url));
+      } else {
+        value.locales.forEach((locale) => {
+          localesIncluded.push(new URL(`${locale}/${url}`, value.url).href);
+        });
+      }
     });
     retval[key] = localesIncluded;
-    console.log({ dstDir, localesIncluded });
+    // console.log({ dstDir, localesIncluded });
   }
 
   const f = JSON.stringify(retval, null, 2);

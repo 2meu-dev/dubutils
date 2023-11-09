@@ -30,6 +30,7 @@
     "searchFor": "PATH_TO_STRING"
   },
   "parseurl": {
+    "outPath" : "fetchUrls.json",
     "platform": {
       "2dub": {
         "parse": false,
