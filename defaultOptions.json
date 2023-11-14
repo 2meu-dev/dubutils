@@ -67,7 +67,7 @@
     }
   },
   "download":{
-    "url":"https://class.2dub.me",
-    "outPath":"download.html"
+    "url":null,
+    "outPath":null
   }
 }
