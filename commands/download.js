@@ -19,7 +19,7 @@ exports.download = (options) => {
 
   if (!url || !outPath) {
     throw new Error(
-      `dubutils.config.json에 url과 outPath를 정의해주세요. url:[${url}] outPath:[${outPath}]`
+      `\n* 입력된 url:[${url}] outPath:[${outPath}]\n* dubutils.config.json에 url과 outPath를 정의해주세요.\n* 또는 다음과 같이 실행해주세요 :\n* dubutils download url=http://url.com outpath=download/file.html`
     );
   }
   const protocol = url.startsWith("https") ? require("https") : require("http");
