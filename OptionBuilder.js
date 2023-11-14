@@ -46,4 +46,7 @@ exports.OptionBuilder = class OptionBuilder {
   parseurl() {
     return this.options.parseurl;
   }
+  download() {
+    return this.options.download;
+  }
 };

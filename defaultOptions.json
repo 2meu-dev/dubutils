@@ -65,5 +65,9 @@
         "locales" : ["en", "ko", "ja"]
       }
     }
+  },
+  "download":{
+    "url":"https://class.2dub.me",
+    "outPath":"download.html"
   }
 }
