@@ -37,7 +37,7 @@
         "path": "",
         "url" : "https://www.2dub.me",
         "includes":[],
-        "excludes":[],
+        "excludes":["logout"],
         "locales" : ["en", "ko", "ja"]
       },
       "solution": {
@@ -45,15 +45,15 @@
         "path": "",
         "url" : "https://solution.2dub.me",
         "includes":[],
-        "excludes":[],
-        "locales" : ["en", "ko", "ja"]
+        "excludes":["logout"],
+        "locales" : ["en", "ko"]
       },
       "class": {
         "parse": false,
         "path": "",
         "url" : "https://class.2dub.me",
         "includes":[],
-        "excludes":[],
+        "excludes":["logout", "api/purchase/speaking/bank"],
         "locales" : ["en", "ko", "ja"]
       },
       "learning": {
@@ -61,7 +61,7 @@
         "path": "",
         "url" : "https://learning.2dub.me",
         "includes":[],
-        "excludes":[],
+        "excludes":["logout"],
         "locales" : ["en", "ko", "ja"]
       }
     }
