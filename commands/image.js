@@ -29,7 +29,6 @@ exports.image = async (options) => {
   // intro
   console.log("  - 소스 이미지폴더 경로 : ", src);
   console.log("  - 저장할 이미지폴더 경로 : ", dst);
-  console.log("  - 이미지 확장자 : ", extensions);
   console.log("  - WebP로 변환할 이미지 확장자 : ", toWebp);
   console.log("  - 이미지 퀄리티 : ", quality);
   console.log("  - 커스텀 파일 : ", Object.keys(custom ?? {}).length, "개");
@@ -44,15 +43,12 @@ exports.image = async (options) => {
 
   // default extensions :
   // [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"]
-  const lowerExtension = extensions?.map((ext) => ext.toLowerCase()) ?? [];
   // const lowerExtension = ["ds_store"];
   // const lowerExtension = [];
-  const fileList = getAllFilesInDir(src, lowerExtension);
+  const fileList = getAllFilesInDir(src);
   if (fileList.length === 0) {
     console.log("파일이 없습니다. 경로나 확장자를 확인해주세요.");
     console.log(" - 검색경로 (options.image.src) : ", src);
-    console.log(" - 확장자 (options.image.extensions) : ", extensions);
-    return;
   }
   const exts = [
     ...new Set(fileList.map((file) => path.extname(file.toLowerCase()))),
@@ -331,12 +327,15 @@ exports.image = async (options) => {
 
   const elapsed = Date.now() - start;
   console.log(
-    `작업 완료. 총 이미지 : [ ${
+    `작업 완료. 총 파일 : [ ${
       converted.length
     }개 ] 압축됨 : [ ${compressedCount}개 ] 원본복사 : [ ${uncompressedCount}개 ] 압축률 = [ ${dstSizeMb}mb / ${srcSizeMb}mb = ${compressPercent}% ] 소요시간 : ${Math.round(
       elapsed / 1000
     )}초`
   );
+  const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"];
+  const nonImages = converted.filter(file=>!imageExtensions.includes(path.extname(file.dst.toLowerCase())));
+  console.log("이미지가 아닌 파일 갯수 : ", nonImages.length);
 
   if (
     webpListPath &&
