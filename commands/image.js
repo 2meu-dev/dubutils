@@ -190,10 +190,12 @@ exports.image = async (options) => {
         return Promise.all(
           fileList.map(async (file) => {
             const keep = path.resolve(file);
-            const extensionChangedToWebp = file.replace(
-              path.extname(file),
-              ".webp"
-            );
+            // const extensionChangedToWebp = file.replace(
+            //   path.extname(file),
+            //   ".webp"
+            // );
+            // png -> webp로 포맷은 바뀌더라도 파일 확장자는 png로 유지
+            const extensionChangedToWebp = file;
             const filePath = path.join(dst, extensionChangedToWebp);
             const directory = path.dirname(filePath);
             fs.mkdirSync(directory, { recursive: true });
