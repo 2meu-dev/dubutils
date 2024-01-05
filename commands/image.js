@@ -136,16 +136,12 @@ exports.image = async (options) => {
       if (!customOption) {
         throw found;
       }
-      //   let extension = (customOption.format ?? path.extname(file)).toLowerCase();
-      // 원본 확장자를 유지한다
-      let extension = path.extname(file);
+      let extension = (customOption.format ?? path.extname(file)).toLowerCase();
       if (!extension.startsWith(".")) {
         extension = "." + extension;
       }
-      // replace extension
       const filePath = path
-        .join(dst, file)
-        .replace(path.extname(file), extension);
+        .join(dst, file);
       const directory = path.dirname(filePath);
       fs.mkdirSync(directory, { recursive: true });
       const converter = converters[extension];
