@@ -79,6 +79,7 @@
     "custom": {
       
     },
-    "speakTop10": true
+    "showTopSize": 10,
+    "topSizeListPath": "./topSizeList.txt"
   }
 }

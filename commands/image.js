@@ -12,12 +12,12 @@ exports.image = async (options) => {
   const {
     src,
     dst,
-    extensions,
     toWebp,
     quality,
     custom,
     webpListPath,
-    speakTop10,
+    showTopSize,
+    topSizeListPath,
   } = options.options.image;
 
   const saveWebpList =
@@ -32,8 +32,11 @@ exports.image = async (options) => {
   console.log("  - WebP로 변환할 이미지 확장자 : ", toWebp);
   console.log("  - 이미지 퀄리티 : ", quality);
   console.log("  - 커스텀 파일 : ", Object.keys(custom ?? {}).length, "개");
-  console.log("  - WebP 파일 리스트 저장 : ", saveWebpList ? webpListPath : "X");
-  console.log("  - 용량 Top 10 출력 : ", speakTop10 ? "O" : "X");
+  console.log(
+    "  - WebP 파일 리스트 저장 : ",
+    saveWebpList ? webpListPath : "X"
+  );
+  console.log("  - 용량 제일 큰 파일 : ", showTopSize ?? 0 + "개 출력");
 
   if (!fs.existsSync(src)) {
     // throw new Error("src 경로가 존재하지 않습니다. src:" + src);
@@ -261,7 +264,7 @@ exports.image = async (options) => {
     })
   );
 
-  const max10sizes = [];
+  const maxNsizes = [];
 
   const sizes = converted.reduce(
     (acc, { src, dst }, i) => {
@@ -274,8 +277,8 @@ exports.image = async (options) => {
       //       dstSize
       //     )} kb] (${ratio}%) : ${src} -> ${dst}`
       //   );
-      if (max10sizes.length < 10) {
-        max10sizes.push({
+      if (maxNsizes.length < (showTopSize ?? 0)) {
+        maxNsizes.push({
           src,
           dst,
           srcSize,
@@ -283,9 +286,9 @@ exports.image = async (options) => {
           ratio,
         });
       } else {
-        max10sizes.sort((a, b) => b.srcSize - a.srcSize);
-        if (max10sizes.at(-1).srcSize < srcSize) {
-          max10sizes[max10sizes.length - 1] = {
+        maxNsizes.sort((a, b) => b.srcSize - a.srcSize);
+        if (maxNsizes.at(-1).srcSize < srcSize) {
+          maxNsizes[maxNsizes.length - 1] = {
             src,
             dst,
             srcSize,
@@ -308,20 +311,28 @@ exports.image = async (options) => {
   const dstSizeMb = Math.round(sizes.dst / 1024);
   const compressPercent = Math.round((sizes.dst / sizes.src) * 100);
 
-  if (speakTop10) {
-    section("[ 용량 Top 10 ]");
-    max10sizes.forEach((size, i) => {
-      console.log(
-        `[${i + 1}] ${path.basename(size.src)} [${Math.round(
-          size.srcSize
-        )} kb -> ${Math.round(size.dstSize)} kb (${
-          size.ratio
-        }%)] : ${path.relative(cwd(), size.src)} -> ${path.relative(
-          cwd(),
-          size.dst
-        )}`
-      );
+  if (maxNsizes.length > 0) {
+    maxNsizes.sort((a, b) => b.srcSize - a.srcSize);
+    section(`[ 용량 Top ${showTopSize} ]`);
+    const msgs = [];
+    maxNsizes.forEach((size, i) => {
+      const msg = `[${i + 1}] ${path.basename(size.src)} [${Math.round(
+        size.srcSize
+      )} kb -> ${Math.round(size.dstSize)} kb (${
+        size.ratio
+      }%)] : ${path.relative(cwd(), size.src)} -> ${path.relative(
+        cwd(),
+        size.dst
+      )}`;
+      console.log(msg);
+      msgs.push(msg);
     });
+    if (topSizeListPath) {
+      fs.writeFileSync(topSizeListPath, msgs.join("\n"));
+      console.log(
+        `  - 용량 Top ${showTopSize} 리스트 저장 : ${topSizeListPath}`
+      );
+    }
     console.log("");
   }
 
@@ -334,7 +345,9 @@ exports.image = async (options) => {
     )}초`
   );
   const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"];
-  const nonImages = converted.filter(file=>!imageExtensions.includes(path.extname(file.dst.toLowerCase())));
+  const nonImages = converted.filter(
+    (file) => !imageExtensions.includes(path.extname(file.dst.toLowerCase()))
+  );
   console.log("이미지가 아닌 파일 갯수 : ", nonImages.length);
 
   if (
