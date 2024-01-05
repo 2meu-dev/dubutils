@@ -136,7 +136,9 @@ exports.image = async (options) => {
       if (!customOption) {
         throw found;
       }
-      let extension = (customOption.format ?? path.extname(file)).toLowerCase();
+      //   let extension = (customOption.format ?? path.extname(file)).toLowerCase();
+      // 원본 확장자를 유지한다
+      let extension = path.extname(file);
       if (!extension.startsWith(".")) {
         extension = "." + extension;
       }
