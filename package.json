@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "esbuild": "^0.19.5",
-    "findup-sync": "^5.0.0"
+    "findup-sync": "^5.0.0",
+    "sharp": "^0.33.1"
   }
 }

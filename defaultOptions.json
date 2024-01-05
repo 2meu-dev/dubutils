@@ -69,5 +69,17 @@
   "download":{
     "url":null,
     "outPath":null
+  },
+  "image":{
+    "src":"./img",
+    "dst":"./public",
+    "extensions":[".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"],
+    "toWebp":[".png", ".jpg", ".jpeg", ".gif"],
+    "webpListPath":"./webpList.txt",
+    "quality" : 80,
+    "custom": {
+      
+    },
+    "speakTop10": true
   }
 }

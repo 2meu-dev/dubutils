@@ -5,3 +5,6 @@ _ENV
 public
 dubutils.config.json
 fetchUrls.json
+img
+.DS_Store
+webpList.txt
