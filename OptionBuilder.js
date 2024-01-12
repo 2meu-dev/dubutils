@@ -30,6 +30,7 @@ const options = optionKeys.reduce((acc, key) => {
 }, defaultOptions);
 
 exports.OptionBuilder = class OptionBuilder {
+  defaultOptions = defaultOptions;
   constructor(args) {
     this.args = args;
     this.options = options;
