@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const { OptionBuilder } = require("./optionbuilder.js");
-const inputArgs = process.argv.slice(2).map((arg) => arg.toLowerCase());
+// const inputArgs = process.argv.slice(2).map((arg) => arg.toLowerCase());
+const inputArgs = process.argv.slice(2);
 
 const command = inputArgs.at(0);
 

@@ -9,3 +9,7 @@ fetchUrls.json
 .DS_Store
 webpList.txt
 topSizeList.txt
+pages
+modules
+common
+optimizedStrings*.txt

@@ -30,56 +30,86 @@
     "searchFor": "PATH_TO_STRING"
   },
   "parseurl": {
-    "outPath" : "fetchUrls.json",
+    "outPath": "fetchUrls.json",
     "platform": {
       "2dub": {
         "parse": false,
         "path": "",
-        "url" : "https://www.2dub.me",
-        "includes":[],
-        "excludes":["logout"],
-        "locales" : ["en", "ko", "ja"]
+        "url": "https://www.2dub.me",
+        "includes": [],
+        "excludes": ["logout"],
+        "locales": ["en", "ko", "ja"]
       },
       "solution": {
         "parse": false,
         "path": "",
-        "url" : "https://solution.2dub.me",
-        "includes":[],
-        "excludes":["logout"],
-        "locales" : ["en", "ko"]
+        "url": "https://solution.2dub.me",
+        "includes": [],
+        "excludes": ["logout"],
+        "locales": ["en", "ko"]
       },
       "class": {
         "parse": false,
         "path": "",
-        "url" : "https://class.2dub.me",
-        "includes":[],
-        "excludes":["logout", "api/purchase/speaking/bank"],
-        "locales" : ["en", "ko", "ja"]
+        "url": "https://class.2dub.me",
+        "includes": [],
+        "excludes": ["logout", "api/purchase/speaking/bank"],
+        "locales": ["en", "ko", "ja"]
       },
       "learning": {
         "parse": false,
         "path": "",
-        "url" : "https://learning.2dub.me",
-        "includes":[],
-        "excludes":["logout"],
-        "locales" : ["en", "ko", "ja"]
+        "url": "https://learning.2dub.me",
+        "includes": [],
+        "excludes": ["logout"],
+        "locales": ["en", "ko", "ja"]
       }
     }
   },
-  "download":{
-    "url":null,
-    "outPath":null
+  "download": {
+    "url": null,
+    "outPath": null
   },
-  "image":{
-    "src":"./img",
-    "dst":"./public",
-    "toWebp":[".png", ".jpg", ".jpeg", ".gif"],
-    "webpListPath":"./webpList.txt",
-    "quality" : 80,
-    "custom": {
-      
-    },
+  "image": {
+    "src": "./img",
+    "dst": "./public",
+    "toWebp": [".png", ".jpg", ".jpeg", ".gif"],
+    "webpListPath": "./webpList.txt",
+    "quality": 80,
+    "custom": {},
     "showTopSize": 10,
     "topSizeListPath": "./topSizeList.txt"
+  },
+  "compressLocale": {
+    "en": {
+      "directoryPaths": ["pages", "modules", "common"],
+      "fileExtensions": [".ts", ".tsx"],
+      "excludeOptimization": {
+        "suffix": [],
+        "prefix": []
+      },
+      "writeOptimizedStrings": "optimizedStrings-en.txt",
+      "verbose": true
+    },
+    "ko": {
+      "directoryPaths": ["pages", "modules", "common"],
+      "fileExtensions": [".ts", ".tsx"],
+      "excludeOptimization": {
+        "suffix": [],
+        "prefix": []
+      },
+      "writeOptimizedStrings": "optimizedStrings-ko.txt",
+      "verbose": true
+    },
+    "ja": {
+      "directoryPaths": ["pages", "modules", "common"],
+      "fileExtensions": [".ts", ".tsx"],
+      "excludeOptimization": {
+        "suffix": [],
+        "prefix": []
+      },
+      "writeOptimizedStrings": "optimizedStrings-ja.txt",
+      "verbose": true
+    }
   }
 }
