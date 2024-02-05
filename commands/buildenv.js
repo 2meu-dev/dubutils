@@ -66,7 +66,9 @@ exports.buildenv = function (inputOptions) {
   }, null);
   if (!envfile) {
     console.error(
-      `환경변수 파일을 찾을 수 없습니다. 다음 중 하나여야 합니다 : [ ${searchThrough.join(", ")} ]`
+      `환경변수 파일을 찾을 수 없습니다. 다음 중 하나여야 합니다 : [ ${searchThrough.join(
+        ", "
+      )} ]`
     );
     process.exit(1);
   }
@@ -364,6 +366,7 @@ ${className}.${init_method_name}();
   if (inputOptions.args.includes("transpile")) {
     console.log("Trasnpile to JS start");
     const esbuild = require("esbuild");
+    const dstDir = transpileOutDir ?? "./_ENV";
 
     esbuild
       .build({
@@ -371,11 +374,11 @@ ${className}.${init_method_name}();
         bundle: true,
         platform: "node",
         target: "node14",
-        outdir: transpileOutDir,
+        outdir: dstDir,
       })
       .then(() => {
         console.log(
-          ` - transpiled to : [ ${path.join(transpileOutDir, publicFileName)} ]`
+          ` - transpiled to : [ ${path.join(dstDir, publicFileName)} ]`
         );
         esbuild
           .build({
@@ -383,14 +386,11 @@ ${className}.${init_method_name}();
             bundle: true,
             platform: "node",
             target: "node14",
-            outdir: transpileOutDir,
+            outdir: dstDir,
           })
           .then(() => {
             console.log(
-              ` - transpiled to : [ ${path.join(
-                transpileOutDir,
-                privateFileName
-              )} ]`
+              ` - transpiled to : [ ${path.join(dstDir, privateFileName)} ]`
             );
             console.log("Transpile to JS complete");
           });
